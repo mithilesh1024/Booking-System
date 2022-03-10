@@ -1,0 +1,17 @@
+{
+    "name": "admin/login",
+    "autoload": {
+        "psr-4": {
+            "Admin\\Login\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mithilesh Kapadi",
+            "email": "mithileshkapadi08@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.5"
+    }
+}
