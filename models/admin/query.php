@@ -11,20 +11,21 @@
         }
     }
 
-    function removeQuery($id){
+    function getQueryDetails($id){
         include_once $_SERVER['DOCUMENT_ROOT'] . "/project/models/config.php";
-        $sql='DELETE FROM query WHERE id="'.$id.'"';
+        $sql="SELECT * FROM query where id=$id";
         $result = mysqli_query($connect,$sql);
-        if($result){
-            return True;
+        if(mysqli_num_rows($result) > 0){
+            return $result;
         }else{
-            return False;
+            return "Error";
         }
     }
 
     function addAnswer($id,$ans){
         include_once $_SERVER['DOCUMENT_ROOT'] . "/project/models/config.php";
-        $sql='UPDATE query SET answer="'.$ans.'" and doa = "'.date("Y/m/d").'" WHERE id="'.$id.'"';
+        $date = date('Y/m/d');
+        $sql="UPDATE query SET answer='$ans', doa = '$date', status = 'Answered' WHERE id=$id";
         $result = mysqli_query($connect,$sql);
         if($result){
             return True;

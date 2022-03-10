@@ -61,7 +61,6 @@ nav-bar{
 	width:100%;
 	border-top:1px solid #2196F3;
 	margin-top: 100px;
-	postion:re
   }
   
   ul {
@@ -150,7 +149,7 @@ nav-bar{
 	width : 150px;
 	border-radius: 25px;
 	background-color: lightblue;
-	font-family: cursive;
+	font-family: : cursive;
 }
 
 .adpaneltext{
@@ -269,6 +268,7 @@ nav-bar{
 	margin-left: 20
 	top:10;
 	bottom: 10;
+	margin-left: 
 }
 
 .textbox{

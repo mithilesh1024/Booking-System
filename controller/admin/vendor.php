@@ -2,13 +2,12 @@
     $list = [];
     function init(){
         $array = ["Sr.No",
-		"ID",
+		"Vendor ID",
 		"Name",
 		"Email ID",
 		"Age",
 		"Phone No.",
-		"Address",
-		"Action"];
+		"Address"];
         
 		// "Date Of Registration",
         // "Rating",

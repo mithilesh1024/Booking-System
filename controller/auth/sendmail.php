@@ -4,7 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/project/vendor/autoload.php';
 
 function sendmail($otp){
     $mail = new PHPMailer(true);

@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['id'])){
-        header("Location: http://localhost/project/views/auth/login.php");
-    }
+    // session_start();
+    // if(!isset($_SESSION['id'])){
+    //     header("Location: http://localhost/project/views/auth/login.php");
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -18,59 +18,100 @@
 </head>
 
 <body>
-    <?php include_once "include/nav.php"; ?>
+    <?php 
+        include_once "include/nav.php";
+        if(!isset($_SESSION["id"])){
+            header("Location:http://localhost/project/views/user/home.php");
+        } 
+    ?>
     <div class="tagholder">
             <h2><center>My Orders</center></h2>
     </div>
     <br>
 
-    <div class="searchbar">
+    <!-- <div class="searchbar">
     <div>
         <label>Filter:</label>
-        <select class="selec">
+        <select name="" class="selec">
           <option>Newest First</option>
           <option>Oldest First</option>
         </select>
         <button class="but" onclick="">Apply</button>
-    </div>
+    </div> -->
 
     <br>
 
 <div class="tablecontainer">
         <table class="infotable">
             <?php 
-                $array = ["Sr.No","Order No.","Vendor ID","Date of Order","Date of Return","Vehicle Type","Vehicle ID","Vehicle Color","Amount","Action"];
+                $array = ["Sr.No","Order No.","Date of Order","Date of Return","Vehicle Name","Vehicle Type","Vehicle ID","Vehicle Color","Amount","Action"];
                 foreach($array as $value){
                     echo '<th>'.$value.'</th>';
                 }
             ?>
             <?php 
                 include $_SERVER['DOCUMENT_ROOT'] . '/project/controller/user/checkorder.php';
-                $list = getOrder();
-                if(!empty($list)){
-                    $i=0;
-                $n = mysqli_num_rows($list);
+                $car = getCarOrder();
+                $bike = getBikeOrder();
+                $i=0;
+                if(!empty($car)){
+                $n = mysqli_num_rows($car);
                 while($n--){
-                    $value = mysqli_fetch_array($list);
+                    $value = mysqli_fetch_array($car);
                         echo '
                         <form method="GET" action="http://localhost/project/controller/user/checkorders.php">
                         <tr>
                         <td>'.++$i.'</td>
-                        <td>'.$value['id'].'</td>
+                        <td>'.$value['o_id'].'</td>
                         <td>'.$value['date_of_order'].'</td>
                         <td>'.$value['dor'].'</td>
                         <td>'.$value['name'].'</td>
                         <td>'.$value['type'].'</td>
-                        <td>'.$value['id'].'</td>
+                        <td>'.$value['c_id'].'</td>
                         <td>'.$value['color'].'</td>
                         <td>'.$value['price'].'</td>
                         <td>
-                        <a href="orderdetails.php"><button class="button" onclick="">More Details</button></a>
-                        <button type="submit" name="deleteorder" value='.$value["id"].' class="button2">Cancel Order</button>
-                        <button type="submit" class="button3" name="feedback" value="'.$value["id"].'" onclick="">Feedback</button>
-                    </td>
+                        <button type="submit" class="button" name="carmoredetails" value='.$value["o_id"].'>More Details</button>';
+                        if($value['date_of_order'] > date("Y-m-d")){
+                            echo '<button type="submit" class="button2" name="deleteorder" value='.$value["o_id"].'>Cancel Order</button>';
+                        }
+                        if($value['dor'] < date("Y-m-d")){
+                            echo '<button type="submit" class="button3" name="feedback" value="'.$value["o_id"].'">Feedback</button>';
+                        }
+                    echo '</td>
                     </tr>
                     </form>';
+                }
+                //DISPLAY BIKE ORDERS
+                if(!empty($bike)){
+                    $n = mysqli_num_rows($bike);
+                    while($n--){
+                        $value = mysqli_fetch_array($bike);
+                            echo '
+                            <form method="GET" action="http://localhost/project/controller/user/checkorders.php">
+                            <tr>
+                            <td>'.++$i.'</td>
+                            <td>'.$value['o_id'].'</td>
+                            <td>'.$value['date_of_order'].'</td>
+                            <td>'.$value['dor'].'</td>
+                            <td>'.$value['name'].'</td>';
+                            // <td>'.$value['type'].'</td>
+                            echo '<td> 2 Wheeler </td>';
+                            echo '<td>'.$value['c_id'].'</td>
+                            <td>'.$value['color'].'</td>
+                            <td>'.$value['price'].'</td>
+                            <td>
+                            <button type="submit" class="button" name="bikemoredetails" value='.$value["o_id"].'>More Details</button>';
+                            if($value['date_of_order'] > date("Y-m-d")){
+                                echo '<button type="submit" class="button2" name="deleteorder" value='.$value["o_id"].'>Cancel Order</button>';
+                            }
+                            if($value['dor'] < date("Y-m-d")){
+                                echo '<button type="submit" class="button3" name="feedback" value="'.$value["o_id"].'">Feedback</button>';
+                            }
+                        echo '</td>
+                        </tr>
+                        </form>';
+                    }
                 }
                 }else{
                     echo '<h1>No orders</h1>';

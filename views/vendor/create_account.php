@@ -13,7 +13,7 @@
 <body>
   <div class="flex">
   <div class="image">
-      <h2 class="item" id="site-name">Welcome New Vendor</h2>
+      <h2 class="item" id="site-name">Welcome New User</h2>
       <img id="car" src="static/images/car.png" alt="car-image">
       <img src="static/images/login.svg" alt="login-image">
     </div>

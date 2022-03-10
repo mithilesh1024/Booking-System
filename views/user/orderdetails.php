@@ -10,7 +10,12 @@
 </head>
 
 <body>
-    <?php include_once "include/nav.php"; ?>
+    <?php 
+        include_once "include/nav.php";
+        if(!isset($_SESSION["id"])){
+            header("Location:http://localhost/project/views/user/home.php");
+        }     
+    ?>
     
     <br>
     
@@ -28,39 +33,86 @@
 
         <div class="imageholder">
             <center>
-                <img class="vehiclepic" src="static/image/bg_1">
-            </center>
-        </div>
-    
-        <br>
-        <br>
-
-        <div class="feedbackform">
-            <p>Order ID:</p>
-            <br>
-            <p>Vendor ID:</p>
-            <br>
-            <p>Order Date:</p>
-            <br>
-            <p>Return Date:</p>
-            <br>
-            <p>Vehicle ID:</p>
-            <br>
-            <p>Model Name:</p>
-            <br>
-            <p>Manufacturer:</p>
-            <br>
-            <p>Type:</p>
-            <br>
-            <p>No. of seats:</p>
-            <br>
-            <p>Colour:</p>
-            <br>
-            <p>Amount:</p>
-            <br>
-
-            
-            
+                <?php 
+                    include $_SERVER['DOCUMENT_ROOT'] . '/project/controller/user/checkorders.php';
+                    $id = $_GET['id'];
+                    $vehicle = $_GET['v'];
+                    if($vehicle == 'c')
+                    {
+                        $result = morecardetail($id);
+                        $value = mysqli_fetch_array($result);
+                        $image = imagecreatefromstring($value["image"]); 
+                        ob_start(); //You could also just output the $image via header() and bypass this buffer capture.
+                        imagejpeg($image, null, 80);
+                        $data = ob_get_contents();
+                        ob_end_clean();
+                        echo '<img class="gridpic" src="data:image/jpg;base64,' .  base64_encode($data)  . '" />';
+                        echo   ' </center>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="feedbackform">';
+                        echo '<p>Order ID: '.$id.'</p>';
+                        echo '<br>';
+                        echo '<p>Vendor Name: '.$value["vname"].'</p>';
+                        echo '<br>';
+                        echo '<p>Order Date: '.$value["date_of_order"].'</p>';
+                        echo '<br>';
+                        echo '<p>Return Date: '.$value["dor"].'</p>';
+                        echo '<br>';
+                        echo '<p>Vehicle ID: '.$value["vno"].'</p>';
+                        echo '<br>';
+                        echo '<p>Model Name: '.$value["name"].'</p>';
+                        echo '<br>';
+                        echo '<p>Manufacturer: '.$value["company"].'</p>';
+                        echo '<br>';
+                        echo '<p>Type: '.$value["type"].'</p>';
+                        echo '<br>';
+                        echo '<p>No. of seats: '.$value["no_of_seats"].'</p>';
+                        echo '<br>';
+                        echo '<p>Colour: '.$value["color"].'</p>';
+                        echo '<br>';
+                        echo '<p>Amount: '.$value["price"].'</p>';
+                        echo '<br>';
+                    }else{
+                        $result = morebikedetail($id);
+                        $value = mysqli_fetch_array($result);
+                        $image = imagecreatefromstring($value["image"]); 
+                        ob_start(); //You could also just output the $image via header() and bypass this buffer capture.
+                        imagejpeg($image, null, 80);
+                        $data = ob_get_contents();
+                        ob_end_clean();
+                        echo '<img class="gridpic" src="data:image/jpg;base64,' .  base64_encode($data)  . '" />';
+                        echo   ' </center>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="feedbackform">';
+                        echo '<p>Order ID: '.$id.'</p>';
+                        echo '<br>';
+                        echo '<p>Vendor Name: '.$value["vname"].'</p>';
+                        echo '<br>';
+                        echo '<p>Order Date: '.$value["date_of_order"].'</p>';
+                        echo '<br>';
+                        echo '<p>Return Date: '.$value["dor"].'</p>';
+                        echo '<br>';
+                        echo '<p>Vehicle ID: '.$value["vno"].'</p>';
+                        echo '<br>';
+                        echo '<p>Model Name: '.$value["name"].'</p>';
+                        echo '<br>';
+                        echo '<p>Manufacturer: '.$value["company"].'</p>';
+                        echo '<br>';
+                        echo '<p>Type: '.$value["type"].'</p>';
+                        echo '<br>';
+                        echo '<p>No. of seats: 2</p>';
+                        echo '<br>';
+                        echo '<p>Colour: '.$value["color"].'</p>';
+                        echo '<br>';
+                        echo '<p>Amount: '.$value["price"].'</p>';
+                        echo '<br>';
+                    }
+                    
+            ?>
         </div>
         <div class="buttonholder">
                 <center>

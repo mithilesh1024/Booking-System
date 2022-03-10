@@ -1,0 +1,141 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+body{
+  min-height: 100vh;
+}
+
+nav-bar{
+  height: 100px;
+  width: 100%;
+  border-top:1px solid #2196F3;
+}
+
+.navlogo{
+  float: left;
+  width: 250px;
+  height: 46px;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  justify-content: flex-end;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.form-container{
+  background-color: lavender;
+  position: relative;
+  margin-left: 10%;
+  border-radius: 50px;
+  margin-right: 10%;
+  width: auto;
+  height: auto;
+  box-shadow: 
+  -10px 10px rgba(70,70,70,0.12);
+}
+
+.feedbackform{
+  position: relative;
+  margin-left: 20%;
+  font-family: arial;
+  font-size: 20px;
+  width: 80%;  
+}
+
+
+.textbox{
+  height: 200px;
+  width: 600px;
+  border-radius: 20px;
+}
+
+.postanswer{
+  background-color: GreenYellow;
+  border-radius: 10px;
+  height: 30px;
+  width: 150px;
+  font-size: 15px;
+  box-shadow: 
+  -5px 5px rgba(70,70,70,0.12);
+}
+
+.resetanswer{
+  background-color: midnightblue;
+  color: white;
+  border-radius: 10px;
+  height: 30px;
+  width: 150px;
+  font-size: 15px;
+  box-shadow: 
+  -5px 5px rgba(70,70,70,0.12);
+}
+
+.backbutton{
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  height: 30px;
+  width: 70px;
+  position: relative;
+  box-shadow: 
+  -5px 5px rgba(70,70,70,0.12);
+}
+
+.buttonholder{
+  display: flex;
+  gap: 20px;
+}
+
+.buttonholder2{
+  display: flex;
+  justify-content: right;
+  margin-right: 10%;
+}
+
+.footer{
+  position:sticky;
+  top:100%;
+  width: 100%; 
+  height: 100px;
+  background-color: black;
+  font-size: large;
+  font-family: serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.footer a:hover{
+  color: dodgerblue;
+  font-size: 20px;
+}
+
+.footer a{
+  color: white;
+  text-decoration: none;
+}

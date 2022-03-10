@@ -7,27 +7,21 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="static/allcss.css">
-	<title>Registered Vendors List</title>
+	<title>Car & Bike Rentals - Vendors List</title>
 </head>
 
 <body>
-	<header class="header">
-		<h2 class="adminheader">ADMIN</h2>
-	</header>
-
 	<?php
-	include_once "./common/navbar.php";
+		include $_SERVER['DOCUMENT_ROOT']."/project/views/admin/common/navbar.php";
 	?>
-
-
-	<hr>
 	<div class="tablename">
 		<h3> Vendor List </h3>
 	</div>
-	<hr>
-	<hr>
-	<div class=tableSearch>
+	<!-- <div class=tableSearch>
 		<label>Filter:</label>
 		<select name="sort">
 			<option name="sort" value="NewestFirst">Newest First</option>
@@ -36,18 +30,9 @@
 			<option name="sort" value="desvendorid">Des. Vendor-ID</option>
 			<option name="sort" value="ascage">Asc. Age</option>
 			<option name="sort" value="desage">Des. Age</option>
-			<option name="sort" value="ascrating">Asc. Rating</option>
-			<option name="sort" value="desrating">Des. Rating</option>
 		</select>
-		<button onclick="">Apply</button>
-
-		<label class="searchtabletext">Search Table</label>
-		<input type="text" name="searchtabletext">
-		<button onclick="">Search</button>
-
-	</div>
-	<hr>
-
+		<button class="but" onclick="">Apply</button>
+	</div> -->
 
 	<div class="tablecontainer">
 		<table class="infotable">
@@ -80,22 +65,21 @@
 					// echo '<td>'.$vendor["Address"].'</td>';
 					// echo '<td>'.$vendor["Rating"].'</td>';
 					// echo '<td>'.$vendor["No. of Vehicles"].'</td>';
-					echo '<td>';
-						echo '<button onclick="">Block</button>';
-						echo '<button onclick="">Delete</button>';
-					echo '</td>';
+					// echo '<td>';
+					// 	echo '<button onclick="">Block</button>';
+					// 	echo '<button onclick="">Delete</button>';
+					// echo '</td>';
 					echo '</tr>';
 				}
 			?>
 			</tr>	
 		</table>
 	</div>
-	<footer class="footer">
-		<h5 class="companyname">@2021 Car & bike rentals | <a href="privacypolicy.html">Privacy Policy</a> |
-			<a href="terms&conditions.html"> Terms & Conditions </a>
-		</h5>
-	</footer>
+	
+
+	<?php 
+        include $_SERVER['DOCUMENT_ROOT']."/project/views/admin/common/adminfooter.php";
+    ?>
 
 </body>
-
 </html>

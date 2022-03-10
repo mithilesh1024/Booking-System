@@ -8,40 +8,60 @@
 <header class="header">
 	<h2 class="vendorheader">CHECKORDERS</h2>
 </header>
+
 <?php 
-	include "common/nav.php";
-?>
+      include_once "common/nav.php";
+      // if(isset($_SESSION["id"])){
+      //       header("Location:http://localhost/project/views/vendor/login.php");
+      // }
+ ?>
+
 <table border="1">
-<tr>
-    <th>SERIAL NO.</th>
-    <th>RC_NO.</th>
-    <th>MODEL_NAME</th>
-    <th>DATE_OF_DEPARTURE</th>
-</tr>
-     <tr>
-          <td>1</td>
-          <td>GA05T1234</td>
-          <td>SWIFT_DZIRE</td>
-          <td>16/12/2021</td>
-    </tr>
-    <tr>
-          <td>2</td>
-          <td>GA06W2018</td>
-          <td>HYUNDAI_VERNA</td>
-          <td>15/12/2021</td>
-    </tr>
-    <tr>
-          <td>3</td>
-          <td>GA072019</td>
-          <td>SUZUKI_ACCESS</td>
-          <td>14/12/2021</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>GA072020</td>
-      <td>VESPA</td>
-      <td>13/12/2021</td>
-    </tr>
+
+<?php 
+      include_once $_SERVER['DOCUMENT_ROOT']."/project/controller/vendor/checkorder.php";
+      $heading = init();
+      echo "<tr>";
+      foreach($heading as $value){
+            echo "<th>$value</th>";
+      }
+      echo "</tr>";
+
+      $car = displayCar();
+      $bike = displayBike();
+      $i=0;
+      if(!empty($car)){
+            $n = mysqli_num_rows($car);
+            while($n--){
+                  $row = mysqli_fetch_array($car);
+                        echo '<tr>
+                              <td>'.++$i.'</td>
+                              <td>'.$row['fname'].' '.$row['mname'].' '.$row['lname'].'</td>
+                              <td>'.$row['vehicle_no'].'</td>
+                              <td>'.$row['name'].'</td>
+                              <td>'.$row['date_of_order'].'</td>
+                              <td>'.$row['dor'].'</td>
+                              <td>'.$row['price'].'</td>
+                        </tr>';
+            }
+      }
+      if(!empty($bike)){
+            $n = mysqli_num_rows($bike);
+            while($n--){
+                  $row = mysqli_fetch_array($bike);
+                        echo '<tr>
+                        <td>'.++$i.'</td>
+                        <td>'.$row['fname'].' '.$row['mname'].' '.$row['lname'].'</td>
+                        <td>'.$row['vehicle_no'].'</td>
+                        <td>'.$row['name'].'</td>
+                        <td>'.$row['date_of_order'].'</td>
+                        <td>'.$row['dor'].'</td>
+                        <td>'.$row['price'].'</td>
+                        </tr>';
+            }
+      }
+
+?>
 </body>
 </html>    
 

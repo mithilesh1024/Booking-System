@@ -1,35 +1,33 @@
 <?php 
     if(isset($_GET["car"])){
-        car();
+        $id = $_GET["car"];
+        header('Location:http://localhost/project/views/user/cardetails.php?allow=True&id='.$id);
     }
     if(isset($_GET["bike"])){
-        bike();
-    }
-
-    if(isset($_GET["bookcar"]) || isset($_GET["bookbike"])){
-        addToCart();
-    }
-
-    function car(){
-        include $_SERVER['DOCUMENT_ROOT'] . '/project/models/user/details.php';
-        $id = $_GET["car"];
-        $result = carDetails($id);
-        $list = mysqli_fetch_array($result);
-        header('Location:http://localhost/project/views/user/cardetails.php?allow="True"&id='.$id.'&mn='.$list['name'].'&company='.$list["company"].'&type='.$list["type"].'&color='.$list['color'].'&price='.$list["price"].'&seat='.$list["no_of_seats"]);
-    }
-
-    function bike(){
-        include $_SERVER['DOCUMENT_ROOT'] . '/project/models/user/details.php';
         $id = $_GET["bike"];
-        $result = getBikes($id);
-        $list = mysqli_fetch_array($result);
-        header('Location:http://localhost/project/views/user/bikedetails.php?allow="True"&id='.$id.'&mn='.$list['name'].'&company='.$list["company"].'&type='.$list["type"].'&color='.$list['color'].'&price='.$list["price"]);
+        header('Location:http://localhost/project/views/user/bikedetails.php?allow=True&id='.$id);
     }
 
-    function addToCart(){
-        // $v_id = $_GET['id'];
-        // $result = addToCart($v_id);
-        // header('Location:http://localhost/project/views/user/cars.php');
+    if(isset($_GET["bookcar"])){
+        $id = $_GET["bookcar"];
+        header('Location:http://localhost/project/views/user/carbooking.php?allow=True&id='.$id.'&v=c');
+    }
+
+    if(isset($_GET["bookbike"])){
+        $id = $_GET["bookbike"];
+        header('Location:http://localhost/project/views/user/carbooking.php?allow=True&id='.$id.'&v=b');
+    }
+
+    function car($id){
+        include $_SERVER['DOCUMENT_ROOT'] . '/project/models/user/details.php';
+        $result = carDetails($id);
+        return $result;
+    }
+
+    function bike($id){
+        include $_SERVER['DOCUMENT_ROOT'] . '/project/models/user/details.php';
+        $result = getBikes($id);
+        return $result;
     }
 
 ?>

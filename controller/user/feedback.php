@@ -5,7 +5,7 @@
         $id= $_POST["feedbacksubmit"];
         $text = $_POST["feed"];
         $result = insertfeedback($id,$text);
-        header("Location:http://localhost/project/views/user/home.php");
+        header("Location:http://localhost/project/views/user/checkorders.php");
     }
 
 ?>

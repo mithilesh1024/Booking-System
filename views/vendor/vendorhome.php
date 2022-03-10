@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="static/allcss.css">
+	<link rel="stylesheet" type="text/css" href="static/css/allcss.css">
 	<title>Vendor Page</title>
 </head>
 <body>
 
 <header class="header">
-	<h2 class="vendorheader">VENDOR</h2>
+	<h2 class="vendorheader">CAR AND BIKE RENTALS</h2>
 </header>
+
+<div>
 <?php 
-	include_once $_SERVER['DOCUMENT_ROOT']."/project/views/vendor/common/navbar.php";
-
-?>
-<div class="imagecontainer">
- <img src="static/images/19199498.jpg" alt="" height="400px">
- <img src="static/images/19199058.jpg" alt="" >
- </div>
-
- <div class="container1">
-	<?php 
-		include $_SERVER['DOCUMENT_ROOT']."/project/controller/vendor/home.php";
-		$a = render();
-		foreach($a as $key => $value){
-			echo '<div class="adpanel1">
-			<label class=adpaneltext>';
-			echo $key. " " . $value;
-			echo '</label>
-				</div>';
+	include_once "common/nav.php";
+	// if(isset($_SESSION["id"])){
+	// 	header("Location:http://localhost/project/views/vendor/login.php");
+	// }
+	if(isset($_GET["insert"])){
+		if($_GET["insert"] == "success"){
+			echo '<script>alert("Vehicle Inserted")</script>';
 		}
-	?>
+	}	
+?>
+</nav>
+
+<div class="grid-container">
+	<div class="grid-item">
+		<img src="static/images/19199498.jpg" alt="" height="400px">
+			<img src="static/images/19199058.jpg" alt="" >
 	</div>
+ </div>
 
 <footer class="footer">
 	<h5 class="companyname">@2021 Car & bike rentals | <a href="privacypolicy.html">Privacy Policy</a> | 

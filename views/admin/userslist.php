@@ -7,25 +7,53 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="static/allcss.css">
-	<title>Registered User List</title>
+	<title>Car & Bike Rentals - Users List</title>
 </head>
 
 <body>
-	<header class="header">
-		<h2 class="adminheader">ADMIN</h2>
-	</header>
 	<?php
-	include_once "./common/navbar.php";
+		include $_SERVER['DOCUMENT_ROOT']."/project/views/admin/common/navbar.php";
 	?>
-	<hr>
-	<div class="tablename">
-		<h3> User List </h3>
-	</div>
-	<hr>
-	<hr>
-	<div class=tableSearch>
-		<label>Filter:</label>
+
+			<center><h3> Users List </h3></center>
+
+	<div class="tableSearch">
+		<!-- <form action="http://localhost/project/controller/admin/userfilter.php" method="GET">
+    <div>
+        <label>Filter:</label>
+        <?php 
+        echo '<select name="userFilter">';
+        if(!isset($_GET["fil"])){
+            echo '<option value="auid" selected>Show All</option>';
+            echo '<option value="auid">Ascending User-ID</option>';   
+            echo '<option value="duid">Descending User-ID</option>';
+        }
+        else{
+            $filter = $_GET["fil"];
+            if($filter == "auid"){
+                // echo "auid";
+                echo '<option value="newf" >Show All</option>';
+                echo '<option value="auid" selected>Ascending User-ID</option>';
+                echo '<option value="duid">Descending User-ID</option>';                
+            }
+            else if($filter == "duid"){
+                echo '<option value="newf">Show All</option>';
+                echo '<option value="auid">Ascending User-ID</option>';
+                echo '<option value="duid" selected>Descending User-ID</option>';
+            }
+        }
+        echo '</select>';
+        
+        ?>
+        <button type="submit" name="filter" value="f" class="but">Apply</button>
+    </div>
+    </form> -->
+
+		<!-- <label>Filter:</label>
 		<select name="sort">
 			<option name="sort" value="NewestFirst">Newest First</option>
 			<option name="sort" value="OldestFirst">Oldest First</option>
@@ -34,19 +62,14 @@
 			<option name="sort" value="ascage">Asc. Age</option>
 			<option name="sort" value="desage">Des. Age</option>
 		</select>
-		<button onclick="">Apply</button>
-
-		<label class="searchtabletext">Search Table</label>
-		<input type="text" name="searchtabletext">
-		<button onclick="">Search</button>
+		<button class="but" onclick="">Apply</button> -->
 	</div>
-	<hr>
-
 	<div class="tablecontainer">
 		<table class="infotable">
 			<tr>
 			<?php
 				include_once $_SERVER['DOCUMENT_ROOT'] . "/project/controller/admin/user.php";
+				
 				$a = init();
 				foreach ($a as $value) {
 					echo '<th>' . $value . '</th>';
@@ -57,37 +80,53 @@
 			<?php 
 				include_once $_SERVER['DOCUMENT_ROOT'] . "/project/controller/admin/user.php";
 				$i=0;
-				$list = displayUsers();
+
+				if(isset($_GET["fil"])){
+                $filter = $_GET["fil"];
+            }else{
+                $filter = "default";
+            }
+            switch($filter){
+                case "auid":
+                    $list = auid();
+                    break;
+                case "duid":
+                    $list = duid();
+                    break;
+                default:
+                    $list = displayUsers();
+                    break;
+            }
 				$n = mysqli_num_rows($list);
+			if($n > 0){	
 				while ($n--) {
-					$user = mysqli_fetch_assoc($list);
+					$user = mysqli_fetch_array($list);
 					echo '<tr>';
 					echo '<td>'.++$i.'</td>';
 					echo '<td>'.$user["id"].'</td>';
+					// echo '<td>'.$user["dor"].'</td>';
 					echo '<td>'.$user["fname"].' '.$user["mname"].' '.$user["lname"].'</td>';
 					echo '<td>'.$user["email"].'</td>';
 					echo '<td>'.$user["age"].'</td>';
 					echo '<td>'.$user["mobile_no"].'</td>';
 					echo '<td>'.$user["address"].'</td>';
-					// echo '<td>'.$list["Date of birth"].'</td>';
-					// echo '<td>'.$list["Date Of Registration"].'</td>';
-					echo '<td>';
-						echo '<button onclick="">Block</button>';
-						echo '<button onclick="">Delete</button>';
-					echo '</td>';
+					// 	echo '<div class="action">
+					// 		  <button class="blockbutton">Block</button>';
+					// 	echo '<button class="deletebutton">Delete</button>
+					// 		  </div>';
+					// echo '</td>';
 					echo '</tr>';
 				}
+			}else{
+                echo "NOT AVAILABLE";
+            }
 			?>
 			</tr>		
 		</table>
 	</div>
 
-	<footer class="footer">
-		<h5 class="companyname">@2021 Car & bike rentals | <a href="privacypolicy.html">Privacy Policy</a> |
-			<a href="terms&conditions.html"> Terms & Conditions </a>
-		</h5>
-	</footer>
-
+	<?php 
+        include $_SERVER['DOCUMENT_ROOT']."/project/views/admin/common/adminfooter.php";
+    ?>
 </body>
-
 </html>

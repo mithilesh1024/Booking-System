@@ -18,18 +18,59 @@
     <br>
 <div class="searchbar">
     <div>
+        <form action="http://localhost/project/controller/user/filterbikes.php" method="GET">
+    <div>
         <label>Filter:</label>
-        <select>
-          <option>Newest First</option>
-          <option>Oldest First</option>
-          <option>Price: Low to High</option>
-          <option>Price: High to Low</option>
-          <option>Rating: Low to High</option>
-          <option>Rating: High to Low</option>
-          <option>Automatic</option>
-          <option>Manual</option>
-        </select>
-        <button class="button" onclick="">Apply</button>
+        <?php 
+        echo '<select name="bikeFilter">';
+        if(!isset($_GET["fil"])){
+            echo '<option value="default" selected>Show All</option>';
+            echo '<option value="plth" >Price: Low to High</option>';
+            echo '<option value="phtl" >Price: High to Low</option>';
+            echo '<option value="automatic" >Automatic</option>';
+            echo '<option value="manual" >Manual</option>';
+        }
+        else{
+            $filter = $_GET["fil"];
+            if($filter == "plth"){
+                echo '<option value="default">Show All</option>';
+                echo '<option value="plth" selected>Price: Low to High</option>';
+                echo '<option value="phtl" >Price: High to Low</option>';
+                echo '<option value="automatic" >Automatic</option>';
+                echo '<option value="manual" >Manual</option>';
+            }
+            else if($filter == "phtl"){
+                echo '<option value="default">Show All</option>';
+                echo '<option value="plth" >Price: Low to High</option>';
+                echo '<option value="phtl" selected>Price: High to Low</option>';
+                echo '<option value="automatic" >Automatic</option>';
+                echo '<option value="manual" >Manual</option>';
+            }
+            else if($filter == "automatic"){
+                echo '<option value="default">Show All</option>';
+                echo '<option value="plth" >Price: Low to High</option>';
+                echo '<option value="phtl" >Price: High to Low</option>';
+                echo '<option value="automatic" selected>Automatic</option>';
+                echo '<option value="manual" >Manual</option>';              
+            }
+            else if($filter == "manual"){
+                echo '<option value="default">Show All</option>';
+                echo '<option value="plth" >Price: Low to High</option>';
+                echo '<option value="phtl" >Price: High to Low</option>';
+                echo '<option value="automatic" >Automatic</option>';
+                echo '<option value="manual" selected>Manual</option>'; 
+            }else if($filter == "default"){
+                echo '<option value="default" selected>Show All</option>';
+                echo '<option value="plth" >Price: Low to High</option>';
+                echo '<option value="phtl" >Price: High to Low</option>';
+                echo '<option value="automatic" >Automatic</option>';
+                echo '<option value="manual">Manual</option>'; 
+            }
+        }
+        echo '</select>';
+        
+        ?>
+        <button type="submit" name="filter" value="f" class="button" onclick="">Apply</button>
     </div>
 
     <div>
@@ -39,35 +80,74 @@
     <div class="grid-flex">
         <div class="grid-container">
             <?php
-            include $_SERVER['DOCUMENT_ROOT'] . '/project/controller/user/bikes.php';
-            $bike = getAllBikes();
-            foreach($bike as $value) {
-                echo
-                '<form method="GET" action="http://localhost/project/controller/user/details.php">
-                    <div class="grid-item">
-                        <div>
-                        <img class="gridpic" src="static/image/bike w">
-                            <div style="background-image: url(static/images/car2.jpg);">
-                            </div>
-                            <div>
-                                <h5 class="car-details">'.$value['name'].'</h5>
-                                <div class="gridfont">
-                                    <p class="car-details">'.$value['company'].'</p>
-                                    <p>Price:<span class="car-details">Rs'.$value['price'].'</span><span>/day</span></p>
-                                </div>
-                                <p>
-                                    <button type="submit" name="bookbike" value="'.$value['id'].'" class="gridbutton" onclick=""> Book now </button>
-                                    <button type="submit" name="bike" value="'.$value['id'].'" class="gridbutton2"> Details </button>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </form>';
+            include $_SERVER['DOCUMENT_ROOT'] . '/project/controller/user/filterbikes.php';
+            if(isset($_GET["fil"])){
+                $filter = $_GET["fil"];
+            }else{
+                $filter = "default";
             }
+            switch($filter){
+                case "plth":
+                    $bike = lowtohigh();
+                    break;
+                case "phtl":
+                    $bike = hightolow();
+                    break;
+                case "automatic":
+                    $bike = getautomatic();
+                    break;
+                case "manual":
+                    $bike = getmanual();
+                    break;
+                default:
+                    $bike = getAllBikes();
+                    break;
+            }
+            $n = mysqli_num_rows($bike);
+            if($n > 0){
+                while($n--) {
+                    $value = mysqli_fetch_array($bike);
+                    echo
+                    '<form method="GET" action="http://localhost/project/controller/user/details.php">
+                        <div class="grid-item">
+                        <div>';
+                        if(!empty($value["image"])){
+                            $image = imagecreatefromstring($value["image"]); 
+                        ob_start(); //You could also just output the $image via header() and bypass this buffer capture.
+                        imagejpeg($image, null, 80);
+                        $data = ob_get_contents();
+                        ob_end_clean();
+                        echo '<img class="gridpic" src="data:image/jpg;base64,' .  base64_encode($data)  . '" />';
+                        }else{
+                            
+                        }
+                        
+                        echo '<div>
+                        </div>
+                        <div>
+                        <h5 class="car-details">'.$value['name'].'</h5>
+                        <div class="gridfont">
+                        <p class="car-details">'.$value['company'].'</p>
+                        <p>Price:<span class="car-details">Rs'.$value['price'].'</span><span>/day</span></p>
+                        </div>
+                        <p>
+                        <button type="submit" name="bookbike" value="'.$value['id'].'" class="gridbutton" > Book now </button>
+                        <button type="submit" name="bike" value="'.$value['id'].'" class="gridbutton2"> Details </button>
+                        </p>
+                        </div>
+                        </div>
+                        </div>
+                        </form>';
+                    }
+                }else{
+                    echo "NOT AVAIBALE";
+                }
             ?>
             <br>
         </div>
     </div>
+
+    <br><br><br><br><br>
 
 <div class="footer">
     <?php include_once "include/footer.php"; ?>    

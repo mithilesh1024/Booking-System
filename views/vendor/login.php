@@ -6,21 +6,21 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="static/login.css" />
+  <link rel="stylesheet" href="static/css/login.css" />
   <script src="login.js"></script>
   <title>Login Page</title>
 </head>
 <body>
   <div class="flex">
     <div class="image">
-      <h2 class="item" id="site-name">Vendor Login</h2>
+      <h2 class="item" id="site-name">Car Rental System</h2>
       <img id="car" src="static/images/car.png" alt="car-image">
       <img src="static/images/login.svg" alt="login-image">
     </div>
     <div class="card">
-    <form action=".../controller/auth/login.php" method="post" id="login-form">
+    <form action="http://localhost/project/controller/vendor/login.php" method="post" id="login-form">
       <div class="item" id="heading">
-        <h3>Welcome</h3>
+        <h3>Vendor Login</h3>
       </div>
         <div class="item" id="email-container">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -41,15 +41,14 @@
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" name="password" class="form-control" id="password" required />
         </div>
-        <div class="item" id="remember-me">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-        </div>
         <div class="item" >
           <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
         </div>
+        <!-- <div class="item" id="remember-me">
+          <button type="submit" name="forgot" value="forgot" id="submit">Forgot Password</button>
+        </div> -->
         <div id="account" class="item" >
-          <a href="auth/create_account.php">Don't have a account?</a>
+          <a href="/create_account.php">Don't have a account?</a>
         </div>
       </form>
       <?php

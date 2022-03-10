@@ -41,15 +41,14 @@
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" name="password" class="form-control" id="password" required />
         </div>
-        <div class="item" id="remember-me">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-        </div>
         <div class="item" >
           <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary">Login</button>
         </div>
+        <!-- <div class="item" id="remember-me">
+          <button type="submit" name="forgot" value="forgot" id="submit">Forgot Password</button>
+        </div> -->
         <div id="account" class="item" >
-          <a href="auth/create_account.php">Don't have a account?</a>
+          <a href="/create_account.php">Don't have a account?</a>
         </div>
       </form>
       <?php

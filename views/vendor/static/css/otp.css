@@ -1,0 +1,33 @@
+.btn{
+	color: white;
+	border-radius: 5px;
+	background-color: DodgerBlue
+}
+
+.header{
+	background-color: DarkBlue;
+	font-style: bold;
+	position: fixed;
+	height : 50px;
+	width: 100%;
+	top:0;
+}
+
+.footer{
+	background-color: grey;
+	font-style: italic;
+	position: fixed;
+	left: 0;
+	right:0;
+	bottom: 0;
+}
+
+.companyname{
+	text-align: center;
+	margin-bottom: 0;
+	font-family: sans-serif;
+}
+
+.container{
+	margin-top: 50px;
+}

@@ -1,22 +1,57 @@
 /* common styles for all pages */
 .header{
 	background-color: DarkBlue;
+	color: white;
 	font-style: bold;
-	position: fixed;
-	height : 50px;
-	width: 100%;
+	position: absolute;
 	top:0;
-	left:0;
-	right:0;
+	height : auto;
+	width: 100%;
 }
 
-.footer{
-	background-color: grey;
-	font-style: italic;
-	position: fixed;
-	left: 0;
-	right:0;
-	bottom: 0;
+nav-bar{
+  height: 100px;
+  width: 100%;
+  position: relative;
+  margin-top: 400px;
+  border-top:1px solid #2196F3;
+}
+
+ul {
+  position: sticky;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: darkblue;
+  justify-content: flex-end;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: lightblue;
+  color: black;
+}
+
+.logo{
+	float: right;
+}
+
+.logo a:hover {
+  background-color: white;
+  color: black;
 }
 
 .companyname{
@@ -25,13 +60,11 @@
 	font-family: sans-serif;
 }
 
-body{
-	background-color: white;
-}
-
 h3,h4{
 	text-align: center;
 	font-family: sans-serif;
+  /*text-shadow: 
+  -1px 2px rgba(70,70,70,0.10);*/
 }
 
 .button{
@@ -41,165 +74,134 @@ h3,h4{
 	margin-top: 50px;
 }
 
-a{
-	text-decoration: none;
+body{
+	width: 100%;
+	min-height: 100vh;
+  margin: 0px;
 }
 
-li{
-	display: inline;
-	font-weight: bolder;
-	text-decoration: none;
-	color: black;
+.footer{
+  position:sticky;
+  top:100%;
+  width: 100%; 
+  height: 100px;
+  background-color: darkblue;
+  font-size: large;
+  font-family: serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.footer a{
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover{
+  color: yellow;
+  text-decoration: none;
 }
 /*--------------------------------------------*/
 
-/* Admin hime page styles */
-.topnavbar{
-	margin-top: 40px;
-	height: 40px;
-	width: 100%;
-	position: fixed;
-	left:0;
-	right: 0;
-	background-color: aliceblue;
-	font-family: cursive;
-	padding: 0;
-	overflow: hidden;
-}
+/* Admin home page styles */
 
-.topnavbar a{
-	padding: 10px;
-	margin-top: 10px;
-}
-
-.topnavbar a:hover{
-	background-color: lightblue;
-	color: Black;
-}
-
-.topnabar a.active{
-	background-color: black;
-	color: white;
-}
 .container1{
 	display: grid;
-	grid-template-columns: 200px 200px 200px 200px;
-	justify-content: space-between;
-	align-items: center;
-	position: fixed;
-	margin-top: 50px;
-	margin-left: 40px;
+	grid-template-columns: auto auto auto auto;
+	justify-content: center;
+	position: relative;
+	gap:100px;
 }
 
-.container2{
-	display: grid;
-	grid-template-columns: 500px 500px;
-	justify-content: space-between;
-	position: fixed;
-	margin-top:300px;
-	margin-left: 40px;
-}
-
-.buttonholder{
-	background-color: azure;
-}
-
-
-
-.adpanel1, .adpanel2, .adpanel3{
+.adpanel1{
 	height: 100px;
-	margin-top: 70px;
-	width : 150px;
-	border-radius: 25px;
+	width : 200px;
+	border: solid 5px;
+	border-color: midnightblue;
+	border-radius: 10px;
 	background-color: lightblue;
-	font-family: : cursive;
+	color: black;
+	font-family: sans-serif;
+	font-size: 23px;
+  box-shadow: 
+  -15px 15px rgba(70,70,70,0.15);
 }
 
 .adpaneltext{
-	text-align: center;
 	text-overflow: auto;
-	font-family: cursive;
+	font-family: sans-serif;
+	font-weight: bold;
 }
-/*
-.adpanel1{
-	margin-left: 10px;
-	float: left;
-}
-
-.adpanel2{
-	margin-left: 10px;
-	float: middle;
-}
-
-.adpanel3{
-	margin-left: 10px;
-	float: right;
-}
-*/
-.loginb{
-	height: 50px;
-	width: 100px;
-	background-color: blue;
-}
-
-.adminheader{
-	font-style: bold;
-	text-align: center;
-	color: white;
-}
-
 
 /* -------------------------------------------------------------- */
 
 /*User list table page*/
-.tablecontainer{
-}
-
-.tablename{
-	position: fixed;
-	margin-top: 60px;
-}
 
 .tableSearch{
-	position: fixed;
-	margin-top: 80px;
+	position: relative;
+	margin-top: auto;
+	font-size: 20px;
 }
 
-.searchtabletext{
-	margin-left:700px;
+.but{
+  width: 80px;
+  height: 25px;
+  background-color: aliceblue;
+  border-radius: 10px;
+  font-size: 15px;
 }
 
-.searchtablebutton{
-
-}
 .infotable{
-	position: fixed;
-	left: 0; 
-	margin-top: 100px;
+	position: relative;
+	left: 0;
 	border-spacing: 0;
-	border-collapse: collapse;
 	width: 100%;
-	border-style: double;
-	border-color: grey;
+	border-bottom: 1px black;
+	border-style: ridge;
 	font-family: sans-serif;
-	margin-right: 10px;
 }
 
 .infotable th{
 	background-color:SteelBlue;
 	color: White;
 	font-weight: Bold;
+	height: 50px;
 }
 
-.infotable tr,td{
+.infotable td{
 	background-color: FloralWhite;
 	text-align: center;
+	border-bottom: ridge grey;
+	height: 35px;
+}
+
+.infotable tr{
+	background-color: FloralWhite;
+	text-align: center;
+	border-bottom: ridge grey;
+}
+
+.action{
+	display: flex;
+	gap:15px;
 }
 
 .deletebutton{
 	border-radius: 5px;
 	background-color: red;
 	color: black;
+	font-weight: bold;
+	width: 70px;
+}
+
+.blockbutton{
+	border-radius: 5px;
+	background-color: orange;
+	color: black;
+	font-weight: bold;
 	width: 70px;
 }
 
@@ -207,56 +209,86 @@ li{
 	border-radius: 5px;
 	background-color: lightgreen;
 	color: black;
+	font-weight: bold;
 	width: 70px;
 }
 /*-------------------------------------------------------------- */
 
 /* -------------------------------------------------------------- */
 
-/*question form page*/
+
+
+
+/*///////////////////////////////////////////////////////////////*/
+/*Answer questions page css*/
 
 .form-container{
-	background-color: floralWhite;
-	position: fixed;
-	margin-top: 100px;
-	margin-left: 100px;
-	margin-right: 100px;
-	width: 1000px;
-
+  background-color: lightgreen;
+  position: relative;
+  margin-left: 10%;
+  border-radius: 50px;
+  margin-right: 10%;
+  width: 80%;
+  height: auto;
+  box-shadow: 
+  -10px 10px rgba(70,70,70,0.12);
 }
 
-.form{
-	position: relative;
-	right: 20;
-	margin-left: 20
-	top:10;
-	bottom: 10;
-	margin-left: 
+.feedbackform{
+  position: relative;
+  margin-left: 20%;
+  font-family: sans-serif;
+  font-size: 20px;
+  width: 80%;  
 }
+
 
 .textbox{
-	height: 200px;
-	width: 400px;
+  height: 200px;
+  width: 600px;
+  border-radius: 20px;
 }
 
 .postanswer{
-	background-color: lightGreen;
-	border-radius: 10px;
-	height: 30px;
-	width: 100px;
+  background-color: GreenYellow;
+  border-radius: 10px;
+  height: 30px;
+  width: 150px;
+  font-size: 15px;
+  box-shadow: 
+  -5px 5px rgba(70,70,70,0.12);
 }
 
 .resetanswer{
-	background-color: lightBlue;
-	border-radius: 10px;
-	height: 30px;
-	width: 100px;
+  background-color: midnightblue;
+  color: white;
+  border-radius: 10px;
+  height: 30px;
+  width: 150px;
+  font-size: 15px;
+  box-shadow: 
+  -5px 5px rgba(70,70,70,0.12);
 }
 
 .backbutton{
-	background-color: lightGrey;
-	border-radius: 10px;
-	height: 25px;
-	width: 70px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  height: 30px;
+  width: 70px;
+  position: relative;
+  box-shadow: 
+  -5px 5px rgba(70,70,70,0.12);
 }
-/*-------------------------------------------------------------- */
+
+.buttonholder{
+  display: flex;
+  gap: 20px;
+}
+
+.buttonholder2{
+  display: flex;
+  justify-content: right;
+  margin-right: 10%;
+}
+/*///////////////////////////////////////////////////////////

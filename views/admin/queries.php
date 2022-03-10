@@ -5,29 +5,25 @@ include $_SERVER['DOCUMENT_ROOT'] . "/project/controller/admin/checkLogin.php";
 
 <!DOCTYPE html>
 <html>
-
 <head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="static/allcss.css">
-	<script defer src="js/deleteQuery.js"></script>
-	<title>Admin Page</title>
+	<!-- <script defer src="js/deleteQuery.js"></script> -->
+	<title>Admin - User Questions</title>
 </head>
 
 <body>
-
-	<header class="header">
-		<h2 class="adminheader">ADMIN</h2>
-	</header>
 	<?php
-	include_once "./common/navbar.php";
+		include $_SERVER['DOCUMENT_ROOT']."/project/views/admin/common/navbar.php";
 	?>
 
-	<hr>
 	<div class="tablename">
 		<h3> Question List </h3>
 	</div>
-	<hr>
-	<hr>
-	<div class=tableSearch>
+
+	<!-- <div class=tableSearch>
 		<label>Filter:</label>
 		<select name="sort">
 			<option name="sort" value="NewestFirst">Newest First</option>
@@ -35,58 +31,53 @@ include $_SERVER['DOCUMENT_ROOT'] . "/project/controller/admin/checkLogin.php";
 			<option name="sort" value="viewpending">View Pending</option>
 			<option name="sort" value="viewanswered">View Answered</option>
 		</select>
-		<button onclick="">Apply</button>
-
-		<label class="searchtabletext">Search Table</label>
-		<input type="text" name="searchtabletext">
-		<button onclick="">Search</button>
-
-	</div>
-	<hr>
-
+		<button class="but" onclick="">Apply</button>
+	</div> -->
 
 	<div class="tablecontainer">
 		<table class="infotable">
-			<th width="50px">Sr.No</th>
-			<th width="50px">Question ID</th>
-			<th width="50px">Status</th>
-			<th width="70px">Date of posting</th>
-			<th width="70px">Date of answering</th>
-			<th width="150px">Question</th>
-			<th width="300px">Question Description</th>
-			<th width="300px">Answer</th>
-			<th width="150px">Action</th>
+			<th >Sr.No</th>
+			<th >Question ID</th>
+			<th >Status</th>
+			<th >Posted On</th>
+			<th >Answered On</th>
+			<th >Question</th>
+			<th >Answer</th>
+			<th >Action</th>
 
 			<?php
 			include_once $_SERVER['DOCUMENT_ROOT'] . "/project/controller/admin/query.php";
 			$i = 0;
 			$list = displayQuestion();
 			$n = mysqli_num_rows($list);
-			while ($n--) {
+			while ($n--) 
+			{
 				$query = mysqli_fetch_assoc($list);
-				echo '<form action="">';
+				echo '<form method="GET" action="http://localhost/project/controller/admin/query.php">';
 				echo '<tr id='.$query["id"].'>';
-				echo '<td>' . ++$i . '</td>';
-				echo '<td class="row-data">' . $query["id"] . '</td>';
-				echo '<td>' . $query["status"] . '</td>';
-				echo '<td class="row-data">' . $query["dop"] . '</td>';
+				echo '<td width="5%">' . ++$i . '</td>';
+				echo '<td width="5%" class="row-data">' . $query["id"] . '</td>';
+				echo '<td width="5%">' . $query["status"] . '</td>';
+				echo '<td width="10%" class="row-data">' . $query["dop"] . '</td>';
 				if (empty($query["doa"])) {
 					echo '<td>NA</td>';
 				} else {
-					echo '<td>' . $query["doa"] . '</td>';
+					echo '<td width="10%">' . $query["doa"] . '</td>';
 				}
-				if (empty($query["subject"])) {
-					echo '<td class="row-data">NA</td>';
-				} else {
-					echo '<td class="row-data">' . $query["subject"] . '</td>';
-				}
-				echo '<td class="row-data">' . $query["question"] . '</td>';
-				echo '<td>' . $query["answer"] . '</td>';
-				echo '<td>';
+				// if (empty($query["subject"])) {
+				// 	echo '<td class="row-data">NA</td>';
+				// } else {
+				// 	echo '<td class="row-data">' . $query["subject"] . '</td>';
+				// }
+				echo '<td width="20%" class="row-data">' . $query["question"] . '</td>';
+				echo '<td width="20%">' . $query["answer"] . '</td>';
+				echo '<td width="10%">';
 				if (empty($query["answer"])) {
-					echo '<button class="answerbutton" onclick="ans()">Answer</button>';
+					echo '<button name="answer" class="answerbutton" value="' . $query["id"] . '">Answer</button>';
 				}
-				echo '<button class="deletebutton" id='.$query["id"].' onclick="del(this.id)">Delete</button>';
+				else{
+					echo '<button name="answer" class="answerbutton" disabled>Done</button>';
+				}
 				echo '</td>';
 				echo '</tr>';
 				echo "</form>";
@@ -96,34 +87,34 @@ include $_SERVER['DOCUMENT_ROOT'] . "/project/controller/admin/checkLogin.php";
 
 	</div>
 
-	<footer class="footer">
-		<h5 class="companyname">@2021 Car & bike rentals | <a href="privacypolicy.html">Privacy Policy</a> |
-			<a href="terms&conditions.html"> Terms & Conditions </a>
-		</h5>
-	</footer>
+	<?php 
+        include $_SERVER['DOCUMENT_ROOT']."/project/views/admin/common/adminfooter.php";
+    ?>
 
-	<script type="text/javascript">
+</body>
+</html>
 
-		function del(){
+
+<!-- 	<script type="text/javascript">
+
+	/*	function del(){
 			var rowid = event.target.parentNode.parentNode.id;
 			var data = document.getElementById(rowid).querySelectorAll(".row-data");
 			
 			window.reload();
-		}	
-
-		function ans(){
-			var rowid = event.target.parentNode.parentNode.id;
-			var data = document.getElementById(rowid).querySelectorAll(".row-data");
-
-			localStorage.setItem("id", data[0].innerHTML);
-			localStorage.setItem("dop", data[1].innerHTML);
-			localStorage.setItem("sub", data[2].innerHTML);
-			localStorage.setItem("question", data[3].innerHTML);
-			window.location.href = "http://localhost/project/views/admin/answerquestion.php";
 		}
+	*/	
 
-	</script>
+		// function ans(){
+		// 	var rowid = event.target.parentNode.parentNode.id;
+		// 	var data = document.getElementById(rowid).querySelectorAll(".row-data");
 
-</body>
+		// 	localStorage.setItem("id", data[0].innerHTML);
+		// 	localStorage.setItem("dop", data[1].innerHTML);
+		// 	// localStorage.setItem("sub", data[2].innerHTML);
+		// 	localStorage.setItem("question", data[3].innerHTML);
+		// 	window.location.href = "http://localhost/project/views/admin/answerquestion.php";
+		// }
 
-</html>
+	</script> -->
+

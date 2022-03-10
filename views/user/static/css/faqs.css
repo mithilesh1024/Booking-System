@@ -3,6 +3,10 @@
     padding:0px;
 }
 
+body{
+  min-height: 100vh;
+}
+
 nav-bar{
   height: 100px;
   width: 100%;
@@ -11,8 +15,8 @@ nav-bar{
 
 .navlogo{
   float: left;
-  width: 200px;
-  height: 40px;
+  width: 250px;
+  height: 46px;
 }
 
 ul {
@@ -125,7 +129,8 @@ li a:hover {
 }
 
 .footer{
-  position:relative;
+  position:sticky;
+  top:100%;
   width: 100%; 
   height: 100px;
   background-color: black;
@@ -136,6 +141,11 @@ li a:hover {
   justify-content: center;
   gap: 20px;
   text-align: center;
+}
+
+.footer a:hover{
+  color: dodgerblue;
+  font-size: 20px;
 }
 
 .footer a{

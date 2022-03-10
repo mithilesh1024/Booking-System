@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/project/models/config.php";
-    include_once $_SERVER['DOCUMENT_ROOT'] . "/project/models/auth/otp.php";
+    include $_SERVER['DOCUMENT_ROOT'] . '/project/models/config.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/project/models/otp.php';
 
     function encrypt($password){
         return password_hash($password, PASSWORD_DEFAULT);
@@ -18,7 +18,7 @@
         $password = mysqli_escape_string($connect,$_POST['password']);
 
         if($fname == "" && $mname == "" && $lname == "" && $age == "" && $mobile == "" && $email == "" && $password == ""){
-            header('Location:'.$_SERVER['DOCUMENT_ROOT'].'/views/vendor/create_account.php?signin=fill');
+            header('Location:http://localhost/project/views/auth/create_account.php?signin=fill');
         }
         $encypted_password = encrypt($password);
         $sql="INSERT INTO user (fname,mname,lname,age,mobile_no,email,password) VALUES ('$fname','$mname','$lname',$age,$mobile,'$email','$encypted_password')";
@@ -26,9 +26,10 @@
         if($result){
             $_SESSION['email'] = $email;
             send_otp();
-            header('Location:'.$_SERVER['DOCUMENT_ROOT'].'/views/vendor/verify.php');
+            header('Location:http://localhost/project/views/auth/verify.php');
+        //    header('Location:../views/home.php');
         }else{
-            header('Location:'.$_SERVER['DOCUMENT_ROOT'].'/views/vendor/create_account.php');
+            header('Location:http://localhost/project/views/auth/create_account.php?signin=server-error&$fname='.$fname.'&&$mname='.$mname.'&&$lname='.$lname.'&&$age='.$age.'&&$mobile'.$mobile.'=&&$email='.$email.'');
         }
     }
 ?>

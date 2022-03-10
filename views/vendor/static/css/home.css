@@ -1,0 +1,10 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+#bar{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
