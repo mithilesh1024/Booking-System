@@ -1,0 +1,263 @@
+/* common styles for all pages */
+.header{
+	background-color: crimson;
+	text-align: center;
+	font-style: bold;
+	position: fixed;
+	height : 10%;
+	width: 100%;
+	top:0;
+	left:0;
+	right:0;
+}
+
+.footer{
+	background-color: maroon;
+	font-style: italic;
+	position: absolute;
+	width:100%;
+	height: 100px;
+}
+
+.companyname{
+	text-align: center;
+	margin-bottom: 0;
+	font-family: sans-serif;
+}
+
+
+body{
+    background-color: pink;
+}
+
+h3,h4{
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.button{
+	background-color: blue;
+	border-radius: 7px;
+	position: relative;
+	margin-top: 20px;
+}
+
+a{
+	text-decoration: none;
+}
+
+li{
+	display: inline;
+	font-weight: bolder;
+	text-decoration: none;
+	color: black;
+}
+.topnavbar{
+	margin-top: 50px;
+	height: 10%;
+	width: 100%;
+	position: fixed;
+	left:0;
+	right: 0;
+	background-color: palevioletred;
+	font-family: cursive;
+	padding: 0;
+	overflow: hidden;
+}
+
+.topnavbar a{
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.topnavbar a:hover{
+	background-color: lightblue;
+	color: Black;
+}
+
+.topnabar a.active{
+	background-color: black;
+	color: white;
+}
+.imagecontainer{
+	width: 100%;
+	height: 400px;
+}
+.container1{
+	display: inline-grid;
+	grid-template-columns: 200px 200px 200px 200px;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	bottom: 0;
+	height: 200px;
+}
+
+.container2{
+	display: grid;
+	grid-template-columns: 500px 500px;
+	justify-content: space-between;
+	position: absolute;
+	margin-top:300px;
+	margin-left: 40px;
+}
+
+.buttonholder{
+	background-color: azure;
+}
+
+
+
+.adpanel1, .adpanel2, .adpanel3{
+	height: 100px;
+	margin-top: 70px;
+	width : 150px;
+	border-radius: 25px;
+	background-color: mediumvioletred;
+	font-family: cursive;
+}
+
+.adpaneltext{
+	text-align: center;
+	text-overflow: auto;
+	font-family: cursive;
+}
+/*
+.adpanel1{
+	margin-left: 10px;
+	float: left;
+}
+
+.adpanel2{
+	margin-left: 10px;
+	float: middle;
+}
+
+.adpanel3{
+	margin-left: 10px;
+	float: right;
+}
+*/
+.loginb{
+	height: 50px;
+	width: 100px;
+	background-color: blue;
+}
+
+.adminheader{
+	font-style: bold;
+	text-align: center;
+	color: white;
+}
+
+
+/* -------------------------------------------------------------- */
+
+/*User list table page*/
+.tablecontainer{
+}
+
+.tablename{
+	position: fixed;
+	margin-top: 60px;
+}
+
+.tableSearch{
+	position: fixed;
+	margin-top: 80px;
+}
+
+.searchtabletext{
+	margin-left:700px;
+}
+
+.searchtablebutton{
+
+}
+.infotable{
+	position: fixed;
+	left: 0; 
+	margin-top: 100px;
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 100%;
+	border-style: double;
+	border-color: grey;
+	font-family: sans-serif;
+	margin-right: 10px;
+}
+
+.infotable th{
+	background-color:SteelBlue;
+	color: White;
+	font-weight: Bold;
+}
+
+.infotable tr,td{
+	background-color: FloralWhite;
+	text-align: center;
+}
+
+.deletebutton{
+	border-radius: 5px;
+	background-color: red;
+	color: black;
+	width: 70px;
+}
+
+.answerbutton{
+	border-radius: 5px;
+	background-color: lightgreen;
+	color: black;
+	width: 70px;
+}
+/*-------------------------------------------------------------- */
+
+/* -------------------------------------------------------------- */
+
+/*question form page*/
+
+.form-container{
+	background-color: floralWhite;
+	position: fixed;
+	margin-top: 100px;
+	margin-left: 100px;
+	margin-right: 100px;
+	width: 1000px;
+
+}
+
+.form{
+	position: relative;
+	right: 20;
+	margin-left: 20
+	top:10;
+	bottom: 10; 
+}
+
+.textbox{
+	height: 200px;
+	width: 400px;
+}
+
+.postanswer{
+	background-color: lightGreen;
+	border-radius: 10px;
+	height: 30px;
+	width: 100px;
+}
+
+.resetanswer{
+	background-color: lightBlue;
+	border-radius: 10px;
+	height: 30px;
+	width: 100px;
+}
+
+.backbutton{
+	background-color: lightGrey;
+	border-radius: 10px;
+	height: 25px;
+	width: 70px;
+}
+/*-------------------------------------------------------------- */

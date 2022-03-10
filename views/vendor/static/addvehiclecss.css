@@ -1,0 +1,57 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:arial;
+    box-sizing:border-box;
+}
+body{
+    background-color: pink;
+}
+.vehicle{
+    margin-left: 500px;
+    text-align: center;
+    background-color:yellow;
+    font-size: 50px;
+    width:100%;
+}
+.CB{
+    font-weight: bold;
+    margin-left: 100px;
+    font-size: 20px;
+    background-color:yellow;
+}
+.select{
+background-color:orange;
+margin-left: 5px;
+font-size: 15px;
+}
+.text{
+    background-color: yellow;
+    margin-left: 100px;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+.beste
+{
+    background-color: yellow;
+    margin-left: 100px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.submit
+{
+    background-color: yellow;
+    margin-left: 100px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.cssclass
+{
+    position:absolute;
+    left: 30%;
+    top: 20%; 
+    height: 600px;
+    width:600px;
+    background: palevioletred;
+}
